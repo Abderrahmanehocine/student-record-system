@@ -73,6 +73,7 @@ int is_valid_topic(const char *topic) {
 
     return 0; // valid
 }
+
 int add_student(){
     Student S;
 
@@ -131,5 +132,6 @@ int add_student(){
         return 1;
     }
     strcpy(S.topic, topic);
-    return 0;
+
+    return save_student_to_file(S);
 }
