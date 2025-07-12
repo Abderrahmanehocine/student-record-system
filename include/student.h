@@ -3,6 +3,9 @@
 
 // include libraries
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
 
 // define constants
 #define MAX_NAME_LENGTH 50
