@@ -1,4 +1,5 @@
-#include "include/student.h"
+#include "../include/student.h"
+#include "../include/file_handler.h"
 
 int is_valid_id(int id){
     return id < 0; // return 1 if invalid
