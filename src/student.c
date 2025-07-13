@@ -162,3 +162,29 @@ int display_students() {
 
     return 0;
 }
+
+int search_student(int id) {
+    Student students[100];
+    int count = load_student_from_file(students, 100);
+
+    if (count <= 0) {
+        printf("⚠️ No student records found or failed to load.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < count; i++) {
+        if (students[i].id == id) {
+            printf("\n✅ Student Found:\n");
+            printf("ID         : %d\n", students[i].id);
+            printf("First Name : %s\n", students[i].first_name);
+            printf("Last Name  : %s\n", students[i].last_name);
+            printf("Birth Date : %s\n", students[i].date_of_birth);
+            printf("Semester   : %d\n", students[i].semester);
+            printf("Topic      : %s\n", students[i].topic);
+            return 0;
+        }
+    }
+
+    printf("❌ No student found with ID %d\n", id);
+    return 1;
+}
