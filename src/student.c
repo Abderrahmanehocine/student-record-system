@@ -136,3 +136,29 @@ int add_student(){
 
     return save_student_to_file(S);
 }
+
+int display_students() {
+    Student students[100];
+    int count = load_student_from_file(students, 100);
+
+    if (count <= 0) {
+        printf("⚠️ No student records found or failed to load.\n");
+        return 1;
+    }
+
+    printf("\n=========== All Student Records ===========\n");
+    printf("%-5s %-15s %-15s %-12s %-8s %-20s\n", "ID", "First Name", "Last Name", "DOB", "Semester", "Topic");
+    printf("---------------------------------------------------------------\n");
+
+    for (int i = 0; i < count; i++) {
+        printf("%-5d %-15s %-15s %-12s %-8d %-20s\n",
+               students[i].id,
+               students[i].first_name,
+               students[i].last_name,
+               students[i].date_of_birth,
+               students[i].semester,
+               students[i].topic);
+    }
+
+    return 0;
+}
