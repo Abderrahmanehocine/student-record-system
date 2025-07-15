@@ -87,6 +87,14 @@ int add_student(){
         printf("Please enter a valid id number\n");
         return 1;
     }
+    Student students[MAX_STUDENTS];
+    int count = load_student_from_file(students, MAX_STUDENTS);
+    for (int i = 0; i < count; i++) {
+        if (students[i].id == id) {
+            printf("❌ Student with ID %d already exists.\n", id);
+            return 1;
+        }
+    }
     S.id = id;
 
     char first_name[MAX_NAME_LENGTH];

@@ -10,6 +10,7 @@
 // define constants
 #define MAX_NAME_LENGTH 50
 #define MAX_TOPIC_LENGTH 100
+#define MAX_STUDENTS 100
 
 typedef struct{
     int id;
