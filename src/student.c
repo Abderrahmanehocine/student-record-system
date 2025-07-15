@@ -362,3 +362,50 @@ int update_student(int id) {
 
     return 0;
 }
+
+int delete_student(int id) {
+    Student students[100];
+    int count = load_student_from_file(students, 100);
+    if (count <= 0) {
+        printf("❌ No student records found.\n");
+        return 1;
+    }
+
+    int found = 0;
+    for (int i = 0; i < count; i++) {
+        if (students[i].id == id) {
+            found = 1;
+            // Shift all students after i one position to the left
+            for (int j = i; j < count - 1; j++) {
+                students[j] = students[j + 1];
+            }
+            count--; // Reduce the total count
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("❌ Student with ID %d not found.\n", id);
+        return 1;
+    }
+
+    // Overwrite the file with the updated student list
+    FILE *file = fopen("data/students.txt", "w");
+    if (!file) {
+        printf("❌ Failed to open file for writing.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < count; i++) {
+        fprintf(file, "%d,%s,%s,%s,%d,%s\n",
+                students[i].id,
+                students[i].first_name,
+                students[i].last_name,
+                students[i].date_of_birth,
+                students[i].semester,
+                students[i].topic);
+    }
+
+    fclose(file);
+    return 0;
+}
